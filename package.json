@@ -1,0 +1,36 @@
+{
+  "name": "iagro-beifong",
+  "version": "1.0.0",
+  "description": "Api to store IAgro IOT modules data",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "start": "node -r dotenv/config ./src/index.js",
+    "dev": "nodemon -r dotenv/config ./src/index.js",
+    "knex": "node -r dotenv/config ./node_modules/knex/bin/cli.js migrate:latest",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OverrideInc/IAgro-Beifong.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OverrideInc/IAgro-Beifong/issues"
+  },
+  "homepage": "https://github.com/OverrideInc/IAgro-Beifong#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.1",
+    "objection": "^2.2.14",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "nodemon": "^2.0.7"
+  }
+}
