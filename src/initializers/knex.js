@@ -8,7 +8,7 @@ let knexConnection;
 
 module.exports = () => {
   if (!knexConnection) {
-    knexConnection = knex(knexfile[settings['NODE_ENV']]);
+    knexConnection = knex(knexfile[settings.NODE_ENV]);
     Model.knex(knexConnection);
   }
 
