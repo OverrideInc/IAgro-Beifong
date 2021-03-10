@@ -7,7 +7,7 @@ API to store the data collected by the IOT module
 First, configure your environment variables:
 
 ```
-$ cp .env.sample .env
+$ cp .env.example .env
 ```
 
 Edit the `.env` file with the right values. Make sure this file is in the root of the project.
