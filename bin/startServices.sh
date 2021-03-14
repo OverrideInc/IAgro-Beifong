@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
-if [ -f ./offline.log ]; then
-  rm -f ./offline.log
+#!/bin/bash
+if [ -f ~/offline.log ]; then
+  rm -f ~/offline.log
 fi
 
 #source ./bin/stopOffline.sh
-TMPFILE=$(mktemp ./offline.log)
+TMPFILE=$(mktemp ~/offline.log || mktemp 2>/dev/null)
 
 if [ -f .offline.pid ]; then
   echo "Found file .offline.pid. Not starting."
