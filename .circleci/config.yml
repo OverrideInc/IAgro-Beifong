@@ -41,6 +41,10 @@ jobs:
           command: npm run knex
 
       - run:
+          name: Applying binary permissions
+          command: chmod u+x bin/startServices.sh bin/stopServices.sh
+
+      - run:
           name: Run linter checks
           command: npm run lint:js
 

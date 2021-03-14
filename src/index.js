@@ -1,12 +1,17 @@
+require('./initializers/knex')();
+
+const serverless = require('serverless-http');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 const express = require('express');
 
-const settings = require('./initializers/settings');
-
-const port = settings.PORT;
+const routes = require('./routes');
 
 const app = express();
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Listening on port: ${port}`);
-});
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use(routes);
+
+module.exports.handler = serverless(app);
