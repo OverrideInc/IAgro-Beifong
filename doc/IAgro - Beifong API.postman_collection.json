@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "05d89fe2-830b-4094-9ee0-2c7b3a9c88e2",
+		"name": "IAgro - Beifong API",
+		"description": "List of request you can make to Beifong",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/dev/users/?_order=asc&_sort=id&_start=0&_end=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dev",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "_order",
+									"value": "asc"
+								},
+								{
+									"key": "_sort",
+									"value": "id"
+								},
+								{
+									"key": "_start",
+									"value": "0"
+								},
+								{
+									"key": "_end",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"app_name\": \"Test\",\n    \"username\": \"Test\",\n    \"password\": \"Test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/dev/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dev",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

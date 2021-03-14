@@ -3,10 +3,6 @@
 const stringifyTimestampsModel = (model) => {
   if (model.created_at) model.created_at = model.created_at.toISOString();
   if (model.updated_at) model.updated_at = model.updated_at.toISOString();
-  if (model.starts_at) model.starts_at = model.starts_at.toISOString();
-  if (model.ends_at) model.ends_at = model.ends_at.toISOString();
-  if (model.expires_at) model.expires_at = model.expires_at.toISOString();
-  if (model.sale_date) model.sale_date = model.sale_date.toISOString();
   return model;
 };
 
