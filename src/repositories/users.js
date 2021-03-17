@@ -1,7 +1,9 @@
 /* eslint-disable no-return-await */
 const User = require('../models/User');
 
-const findById = (id) => User.query().findById(id);
+const findById = async (id) => User.query().findById(id);
+
+const findByUsername = async (username) => User.query().findOne({ username });
 
 const list = async ({
   start,
@@ -34,6 +36,7 @@ const remove = async (id) => User.query().deleteById(id);
 module.exports = {
   list,
   findById,
+  findByUsername,
   create,
   update,
   remove,
