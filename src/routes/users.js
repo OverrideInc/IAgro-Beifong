@@ -4,8 +4,9 @@ const router = express.Router();
 
 const usersController = require('../controllers/users');
 
-/* GET users listing. */
-router.get('/', usersController.list);
+const { addUserToRequest } = require('../middlewares/decodeAuthTokenUtils');
+
+router.get('/', addUserToRequest, usersController.list);
 
 router.post('/', usersController.create);
 

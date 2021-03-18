@@ -44,12 +44,20 @@ const usersController = {
   },
 
   create: async (req, res) => {
-    const { app_name: appName, username, password } = req.body;
+    const {
+      app_name: appName,
+      username,
+      password,
+      user_type: userType,
+      customer_id: customerId,
+    } = req.body;
 
     const user = await users.create({
       app_name: appName,
       username,
       password,
+      user_type: userType,
+      customer_id: customerId,
     });
 
     const serialized = new UserSerializer().serialize(user);
