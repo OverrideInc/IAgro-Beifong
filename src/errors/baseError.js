@@ -1,4 +1,4 @@
-const HttpStatus = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 
 class BaseError extends Error {
   constructor(message) {
@@ -20,7 +20,7 @@ class BaseError extends Error {
 
   // eslint-disable-next-line class-methods-use-this
   get statusCode() {
-    return HttpStatus.INTERNAL_SERVER_ERROR;
+    return StatusCodes.INTERNAL_SERVER_ERROR;
   }
 }
 

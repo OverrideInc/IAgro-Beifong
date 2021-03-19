@@ -1,4 +1,4 @@
-const HttpStatus = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 
 const buildApiErrorResponse = (error) => {
   const jsonError = {
@@ -25,7 +25,7 @@ const buildGenericErrorResponse = (error) => {
   };
 
   return {
-    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
     body: { errors: [jsonError] },
   };
 };
@@ -38,7 +38,7 @@ const buildValidationErrorResponse = (joiError) => {
   }));
 
   return {
-    statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+    statusCode: StatusCodes.UNPROCESSABLE_ENTITY,
     body: { errors },
   };
 };
