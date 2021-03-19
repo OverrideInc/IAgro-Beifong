@@ -36,6 +36,10 @@ class User extends Model {
     if (!this.password) this.password = uuidv4();
 
     if (!this.user_type) this.user_type = User.validUserTypes.TERRA;
+  }
+
+  async $afterFind(queryContext) {
+    await super.$afterFind(queryContext);
 
     if (!this.app_name && this.customer) {
       this.app_name = `${_.snakeCase(this.customer.name)}_${this.user_type}_${
