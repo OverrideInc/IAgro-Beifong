@@ -1,4 +1,5 @@
 const faker = require('faker');
+const Customer = require('../../src/models/Customer');
 
 const User = require('../../src/models/User');
 
@@ -13,6 +14,16 @@ const Factory = (name, customAttrs = {}) => {
       const attrs = Object.assign(baseAttrs, customAttrs);
 
       return User.query().insert(attrs).returning('*');
+    },
+    customer: async () => {
+      const customerName = faker.name.firstName();
+      const baseAttrs = {
+        name: customerName,
+        email: faker.internet.email(customerName),
+      };
+      const attrs = Object.assign(baseAttrs, customAttrs);
+
+      return Customer.query().insert(attrs).returning('*');
     },
   };
 

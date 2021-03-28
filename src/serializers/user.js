@@ -1,6 +1,6 @@
 const Serializer = require('./serializer');
 
-const BASE_FIELDS = ['id', 'app_name', 'username', 'api_key'];
+const BASE_FIELDS = ['id', 'app_name', 'username', 'customer_id', 'user_type'];
 
 class UserSerializer extends Serializer {
   constructor(options = {}) {
