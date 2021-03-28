@@ -2,7 +2,7 @@
 const { Model } = require('objection');
 const _ = require('lodash');
 const passwordGenerator = require('secure-random-password');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const SALT_ROUNDS_FOR_PASSWORD = 6;
 
