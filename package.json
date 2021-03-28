@@ -12,7 +12,7 @@
     "service:start": "node -e 'require(\"shelljs\").exec(\"./bin/startServices.sh\")'",
     "service:stop": "node -e 'require(\"shelljs\").exec(\"./bin/stopServices.sh\")'",
     "knex": "node -r dotenv-flow/config ./node_modules/knex/bin/cli.js migrate:latest",
-    "test": "npm run service:start && NODE_ENV=test jest  --no-cache --detectOpenHandles test && npm run service:stop",
+    "test": "npm run service:start && NODE_ENV=test jest --collectCoverage=true --no-cache --detectOpenHandles test && npm run service:stop",
     "test:bail": "npm test -- --bail",
     "test:related": "NODE_ENV=test jest --bail --findRelatedTests test",
     "prepare": "husky install",

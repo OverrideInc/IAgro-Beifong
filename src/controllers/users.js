@@ -17,32 +17,23 @@ const usersController = {
         id: ids,
         ...filters
       },
-      listFilter,
     } = req;
 
-    if (ids) {
-      const usersList = await users.findByIds(ids, listFilter);
-      const results = new UserSerializer().serialize(usersList);
+    const { results, total } = await users.list({
+      start,
+      end,
+      sort,
+      order,
+      ...filters,
+    });
 
-      res.status(StatusCodes.OK).send(results);
-    } else {
-      const { results, total } = await users.list({
-        start,
-        end,
-        sort,
-        order,
-        listFilter,
-        ...filters,
-      });
+    const usersList = new UserSerializer().serialize(results);
 
-      const usersList = new UserSerializer().serialize(results);
-
-      res
-        .status(StatusCodes.OK)
-        .header('Access-Control-Expose-Headers', 'X-Total-Count')
-        .header('X-Total-Count', total)
-        .send(usersList);
-    }
+    res
+      .status(StatusCodes.OK)
+      .header('Access-Control-Expose-Headers', 'X-Total-Count')
+      .header('X-Total-Count', total)
+      .send(usersList);
   },
 
   create: async (req, res) => {

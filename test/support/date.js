@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
+/* istanbul ignore file */
+
 const stringifyTimestampsModel = (model) => {
   if (model.created_at) model.created_at = model.created_at.toISOString();
   if (model.updated_at) model.updated_at = model.updated_at.toISOString();

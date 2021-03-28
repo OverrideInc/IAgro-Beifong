@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.2
 
 jobs:
   build:
@@ -21,7 +24,7 @@ jobs:
       ADMIN_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2duaXRvOnVzZXJuYW1lIjoiYWRtaW4ifQ.O2DQfh030NS7mUegaxiwa66UtCTINLWuj7p4Xa7VOdQ
       MANAGER_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2duaXRvOnVzZXJuYW1lIjoibWFuYWdlciJ9.Ub9X_ke2b9PkAVOW2PRThx9gZP8NtivAlKszXpBFJcA
       TERRA_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2duaXRvOnVzZXJuYW1lIjoidGVycmEifQ.gSZfp9BO2B9Z4JOtme2L8i03fMfWCFHd36a8nuElJFI
-
+      CODECOV_TOKEN: 'f0d781de-8e0f-449d-a1ed-6a45836e440a'
 
     steps:
       - checkout
@@ -53,5 +56,10 @@ jobs:
           command: npm run lint:js
 
       - run:
-          name: Run tests
+          name: Run tests and collect coverage
           command: npm run test
+      - store_artifacts:
+          path: coverage
+
+      - codecov/upload:
+          file: coverage

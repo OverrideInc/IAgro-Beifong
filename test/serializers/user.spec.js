@@ -9,32 +9,58 @@ describe('UserSerializer', () => {
     let user1;
     let user2;
 
-    beforeEach(async () => {
-      user1 = await Factory('user');
-      user2 = await Factory('user');
+    describe('serialize an array', () => {
+      beforeEach(async () => {
+        user1 = await Factory('user');
+        user2 = await Factory('user');
+      });
+
+      it('returns the serialized array', async () => {
+        const serializable = [user1, user2];
+
+        const serialized = new UserSerializer().serialize(serializable);
+
+        expect(serialized).toMatchObject([
+          {
+            id: user1.id,
+            app_name: user1.app_name,
+            username: user1.username,
+            customer_id: user1.customer_id,
+            user_type: user1.user_type,
+          },
+          {
+            id: user2.id,
+            app_name: user2.app_name,
+            username: user2.username,
+            customer_id: user2.customer_id,
+            user_type: user2.user_type,
+          },
+        ]);
+      });
     });
 
-    it('returns the serialized array', async () => {
-      const serializable = [user1, user2];
+    describe('serialize an object', () => {
+      it('returns the serialized array', async () => {
+        user1 = await Factory('user');
 
-      const serialized = new UserSerializer().serialize(serializable);
+        const serialized = new UserSerializer().serialize(user1);
 
-      expect(serialized).toMatchObject([
-        {
+        expect(serialized).toMatchObject({
           id: user1.id,
           app_name: user1.app_name,
           username: user1.username,
           customer_id: user1.customer_id,
           user_type: user1.user_type,
-        },
-        {
-          id: user2.id,
-          app_name: user2.app_name,
-          username: user2.username,
-          customer_id: user2.customer_id,
-          user_type: user2.user_type,
-        },
-      ]);
+        });
+      });
+    });
+
+    describe('serialize an invalid object', () => {
+      it('returns null', async () => {
+        const serialized = new UserSerializer().serialize(1);
+
+        expect(serialized).toBeNull();
+      });
     });
   });
 
