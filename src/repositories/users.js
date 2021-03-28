@@ -5,26 +5,8 @@ const findById = async (id) => User.query().findById(id);
 
 const findByUsername = async (username) => User.query().findOne({ username });
 
-const list = async ({
-  start,
-  end,
-  sort: column,
-  order,
-  listFilter,
-  ...filters
-}) => {
-  if (listFilter) {
-    return listFilter
-      .where(filters)
-      .orderBy([{ column, order }])
-      .range(start, end);
-  }
-
-  return User.query()
-    .where(filters)
-    .orderBy([{ column, order }])
-    .range(start, end);
-};
+const list = async ({ start, end, sort: column, order, ...filters }) =>
+  User.query().where(filters).orderBy([{ column, order }]).range(start, end);
 
 const create = async (data) => await User.query().insert(data).returning('*');
 

@@ -2,6 +2,8 @@
 
 [![<OverrideInc>](https://circleci.com/gh/OverrideInc/IAgro-Beifong.svg?style=shield&circle-token=b8925018796325809b7bfc97a01821992103b99a)](https://app.circleci.com/pipelines/github/OverrideInc/IAgro-Beifong)
 
+[![codecov](https://codecov.io/gh/OverrideInc/IAgro-Beifong/branch/master/graph/badge.svg?token=06W242YJNH)](https://codecov.io/gh/OverrideInc/IAgro-Beifong)
+
 Serverless REST-like API to store the data collected by the IOT module.
 
 ## Project Set-up
