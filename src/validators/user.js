@@ -5,8 +5,8 @@ const schema = {
   create: {
     app_name: Joi.string().optional(),
     username: Joi.string().required(),
-    password: Joi.string().optional(),
-    customer_id: Joi.number().required(),
+    password: Joi.string().optional().min(8),
+    customer_id: Joi.number().integer().optional(),
     user_type: Joi.string()
       .valid(...Object.values(User.validUserTypes))
       .optional(),
