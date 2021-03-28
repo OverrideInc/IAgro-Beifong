@@ -12,7 +12,11 @@ describe('route/users', () => {
     let users;
 
     beforeEach(async () => {
-      users = [await Factory('user'), await Factory('user')];
+      const adminUser = await Factory('user', {
+        user_type: 'ADMIN',
+        username: 'camilo',
+      });
+      users = [adminUser, await Factory('user'), await Factory('user')];
     });
 
     it('returns 200 status code', async () => {
@@ -24,7 +28,10 @@ describe('route/users', () => {
           _start: 0,
           _end: 10,
         })
-        .set('Accept', 'application/json');
+        .set({
+          authorization: process.env.DUMMY_TOKEN,
+          Accept: 'application/json',
+        });
 
       expect(response.status).toBe(200);
     });
@@ -38,7 +45,10 @@ describe('route/users', () => {
           _start: 0,
           _end: 10,
         })
-        .set('Accept', 'application/json');
+        .set({
+          authorization: process.env.DUMMY_TOKEN,
+          Accept: 'application/json',
+        });
 
       const serialized = new UserSerializer().serialize(users);
 

@@ -1,4 +1,4 @@
-const HttpStatus = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 
 const users = require('../repositories/users');
 
@@ -22,7 +22,7 @@ const usersController = {
       const usersList = await users.findByIds(ids, listFilter);
       const results = new UserSerializer().serialize(usersList);
 
-      res.status(HttpStatus.OK).send(results);
+      res.status(StatusCodes.OK).send(results);
     } else {
       const { results, total } = await users.list({
         start,
@@ -36,7 +36,7 @@ const usersController = {
       const usersList = new UserSerializer().serialize(results);
 
       res
-        .status(HttpStatus.OK)
+        .status(StatusCodes.OK)
         .header('Access-Control-Expose-Headers', 'X-Total-Count')
         .header('X-Total-Count', total)
         .send(usersList);
@@ -61,7 +61,7 @@ const usersController = {
     });
 
     const serialized = new UserSerializer().serialize(user);
-    res.status(HttpStatus.CREATED).json(serialized);
+    res.status(StatusCodes.CREATED).json(serialized);
   },
 };
 
