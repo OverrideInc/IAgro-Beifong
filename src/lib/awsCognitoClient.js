@@ -3,13 +3,13 @@ require('cross-fetch/polyfill');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 class AwsCognitoClient {
-  constructor() {
+  userPool() {
     const poolData = {
       UserPoolId: process.env.AWS_POOL_ID,
       ClientId: process.env.AWS_CLIENT_ID,
     };
 
-    this.userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    return new AmazonCognitoIdentity.CognitoUserPool(poolData);
   }
 
   signUp(username, password) {
@@ -17,7 +17,7 @@ class AwsCognitoClient {
       return new Promise((resolve) => resolve());
 
     return new Promise((resolve, reject) => {
-      this.userPool.signUp(username, password, [], null, (err, result) => {
+      this.userPool().signUp(username, password, [], null, (err, result) => {
         if (err) {
           reject(err);
           return;
@@ -49,7 +49,7 @@ class AwsCognitoClient {
 
     const userData = {
       Username: username,
-      Pool: this.userPool,
+      Pool: this.userPool(),
     };
 
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
