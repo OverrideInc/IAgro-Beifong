@@ -4,4 +4,5 @@ module.exports = Object.freeze({
   CREATE: 'create',
   UPDATE: 'update',
   DELETE: 'delete',
+  LOGIN: 'login',
 });

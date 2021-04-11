@@ -13,69 +13,7 @@
 					"name": "List Users",
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "eyJraWQiOiJMT0V5Tk5nUWxJV1l1Y2pjV0ZFV2ZndzBpRE13MHFsaFwvOHJrODM4K2I3cz0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiREd6NHE5cVdXWE9wS25tbm14WDk0ZyIsInN1YiI6IjUyYzNlMDQ3LTdlN2MtNDc0YS1hYmZjLTAwMjhiYzJiZjM5MSIsImF1ZCI6IjM4N3BnOHJtcWs4NWplYmlkN3QwYzNlMmtqIiwiZXZlbnRfaWQiOiIzM2Q3ZDNlOC1iZjM0LTRjYTgtYWIwNi01MDMyMjZhNDUyYzkiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTYxNTk4NDQwMSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfbWhoMlVJRkdzIiwiY29nbml0bzp1c2VybmFtZSI6ImNhbWlsbyIsImV4cCI6MTYxNTk4ODAwMSwiaWF0IjoxNjE1OTg0NDAxfQ.tEsCAYyxgeOzyP1UXeRtuzEFxNXqaZcxyOgSTkf6zfdo2uKwwZLEUw6ni5BWANhBEHoQ3hk7AgExVF3DEFxee_Ys_U2UKBy1qkuv4RQuxFRjFCCEtmMrwu9M-iGI1GeYKSgJl6pN5fOzGo-OB-nYbNWGhlw_DIFcX-GmEaVK2kb7sxpGLdL9DJ4N_wWoywyhD4B7vulonhDBJUQdnyOf3wMf3Ow_19HxRQpxWHWOQfmVw8dmHtUMxTWJOWYJ_OKxwWOrPX6otqPEwmRoG4svtFbXh0rLQNEqEx4k4xD6HkqW-cYEp03yWf7Rah1Rf_khvZi5iHyeuHwgaw-GiAly4w",
-									"type": "string"
-								},
-								{
-									"key": "clientId",
-									"value": "{{client_id}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{auth_url}}",
-									"type": "string"
-								},
-								{
-									"key": "redirect_uri",
-									"value": "{{callback_url}}",
-									"type": "string"
-								},
-								{
-									"key": "client_authentication",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "headerPrefix",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "scope",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "useBrowser",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "grant_type",
-									"value": "implicit",
-									"type": "string"
-								},
-								{
-									"key": "tokenName",
-									"value": "IAgro",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [
@@ -121,70 +59,13 @@
 					"name": "Create User",
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "authUrl",
-									"value": "{{auth_url}}",
-									"type": "string"
-								},
-								{
-									"key": "redirect_uri",
-									"value": "{{callback_url}}",
-									"type": "string"
-								},
-								{
-									"key": "clientId",
-									"value": "{{client_id}}",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "client_authentication",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "headerPrefix",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "scope",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "useBrowser",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "grant_type",
-									"value": "implicit",
-									"type": "string"
-								},
-								{
-									"key": "tokenName",
-									"value": "IAgro",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"app_name\": \"Test\",\n    \"username\": \"Test\",\n    \"customer_id\": 1,\n    \"user_type\": \"MANAGER\",\n    \"password\": \"Secure_123\"\n}",
+							"raw": "{\n    \"app_name\": \"Test\",\n    \"username\": \"test_manager\",\n    \"customer_id\": 1,\n    \"user_type\": \"MANAGER\",\n    \"password\": \"Secure_123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -192,14 +73,44 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/dev/users/",
+							"raw": "{{host}}/dev/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dev",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test_manager\",\n    \"password\": \"Secure_123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/dev/users/login",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"dev",
 								"users",
-								""
+								"login"
 							]
 						}
 					},

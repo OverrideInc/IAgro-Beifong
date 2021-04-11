@@ -2,19 +2,19 @@ const userValidation = require('../../src/validators/user');
 const { user1: userData } = require('../fixtures/users');
 
 describe('validations/user', () => {
+  const itIsInvalid = (params, action = 'create') => {
+    it('is invalid', () => {
+      expect(userValidation(params, action).error).toBeTruthy();
+    });
+  };
+
+  const itIsValid = (params, action = 'create') => {
+    it('is valid', () => {
+      expect(userValidation(params, action).error).toBeUndefined();
+    });
+  };
+
   describe('create', () => {
-    const itIsInvalid = (params) => {
-      it('is invalid', () => {
-        expect(userValidation(params, 'create').error).toBeTruthy();
-      });
-    };
-
-    const itIsValid = (params) => {
-      it('is valid', () => {
-        expect(userValidation(params, 'create').error).toBeUndefined();
-      });
-    };
-
     describe('is valid when the user is correct', () => {
       itIsValid(userData);
     });
@@ -86,6 +86,10 @@ describe('validations/user', () => {
         describe('when it is not a string', () => {
           itIsInvalid({ ...userData, password: 1 });
         });
+
+        describe('when it is less than 8 characters', () => {
+          itIsInvalid({ ...userData, password: 'Secu_12' });
+        });
       });
     });
 
@@ -105,6 +109,46 @@ describe('validations/user', () => {
 
         describe('when it is not a string', () => {
           itIsInvalid({ ...userData, user_type: 1 });
+        });
+      });
+    });
+  });
+
+  describe('login', () => {
+    const { username, password } = userData;
+
+    describe('is valid when the user is correct', () => {
+      itIsValid({ username, password }, 'login');
+    });
+
+    describe('username', () => {
+      describe('when is not present', () => {
+        itIsInvalid({ username: undefined, password }, 'login');
+      });
+
+      describe('when it is present', () => {
+        describe('when it is an empty string', () => {
+          itIsInvalid({ ...userData, username: '' }, 'login');
+        });
+
+        describe('when it is not a string', () => {
+          itIsInvalid({ ...userData, username: 1 }, 'login');
+        });
+      });
+    });
+
+    describe('password', () => {
+      describe('when is not present', () => {
+        itIsInvalid({ username, password: undefined }, 'login');
+      });
+
+      describe('when it is present', () => {
+        describe('when it is an empty string', () => {
+          itIsInvalid({ username, password: '' }, 'login');
+        });
+
+        describe('when it is not a string', () => {
+          itIsInvalid({ username, password: 1 }, 'login');
         });
       });
     });
