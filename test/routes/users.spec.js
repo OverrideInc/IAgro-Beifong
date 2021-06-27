@@ -273,17 +273,6 @@ describe('route/users', () => {
         password: userPassword,
       });
     });
-  });
-
-  describe('POST /users', () => {
-    describe('requesting with no auth', () => {
-      it('returns 401 status code when no token provided', async () => {
-        const response = await request(constants.TEST_PATH).post('/users').set({
-          Accept: 'application/json',
-        });
-
-        expect(response.status).toBe(401);
-      });
 
     describe('requesting with no auth', () => {
       it('returns 401 status code when no token provided', async () => {

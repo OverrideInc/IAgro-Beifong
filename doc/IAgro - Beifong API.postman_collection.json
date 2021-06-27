@@ -96,7 +96,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"username\": \"test_manager\",\n    \"password\": \"Secure_123\"\n}",
-
 							"options": {
 								"raw": {
 									"language": "json"
