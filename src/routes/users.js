@@ -18,8 +18,15 @@ router.get(
 router.post(
   '/',
   authorizeUser(resources.USERS, actions.CREATE),
-  usersValidations.validateUserData(actions.CREATE),
+  withErrorHandling(usersValidations.validateUserData(actions.CREATE)),
   withErrorHandling(usersController.create)
+);
+
+router.post(
+  '/login',
+  authorizeUser(resources.USERS, actions.LOGIN),
+  withErrorHandling(usersValidations.validateUserData(actions.LOGIN)),
+  withErrorHandling(usersController.login)
 );
 
 module.exports = router;

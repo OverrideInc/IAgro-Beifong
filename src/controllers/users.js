@@ -79,6 +79,27 @@ const usersController = {
     const serialized = new UserSerializer({ includePassword }).serialize(user);
     res.status(StatusCodes.CREATED).json(serialized);
   },
+
+  login: async (req, res) => {
+    const { username, password } = req.body;
+
+    let authenticationToken;
+
+    await new AwsCognitoClient().signIn(username, password).then(
+      (result) => {
+        authenticationToken = result.getIdToken().getJwtToken();
+      },
+      (err) => {
+        if (err) {
+          throw new ConflictError(
+            `User couldn't log in cognito: ${err.message}`
+          );
+        }
+      }
+    );
+
+    res.status(StatusCodes.CREATED).json({ authenticationToken });
+  },
 };
 
 module.exports = usersController;

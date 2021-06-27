@@ -11,6 +11,10 @@ const schema = {
       .valid(...Object.values(User.validUserTypes))
       .optional(),
   },
+  login: {
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  },
 };
 
 module.exports = (jsonObject, action) => {

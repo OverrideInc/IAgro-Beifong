@@ -12,7 +12,9 @@ const rolePermissionsMapping = {
       (action) => action !== actions.DELETE
     ),
   },
-  [`${User.validUserTypes.TERRA}`]: {},
+  [`${User.validUserTypes.TERRA}`]: {
+    [`${resources.USERS}`]: [actions.LOGIN],
+  },
 };
 
 module.exports = (role, resource, action) => {

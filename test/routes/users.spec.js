@@ -261,4 +261,77 @@ describe('route/users', () => {
       });
     });
   });
+
+  describe('POST /users/login', () => {
+    let user;
+    const userPassword = 'Secure_123';
+
+    beforeEach(async () => {
+      user = await Factory('user', {
+        user_type: 'TERRA',
+        username: 'terra',
+        password: userPassword,
+      });
+    });
+
+    describe('requesting with no auth', () => {
+      it('returns 401 status code when no token provided', async () => {
+        const response = await request(constants.TEST_PATH)
+          .post('/users/login')
+          .set({
+            Accept: 'application/json',
+          });
+
+        expect(response.status).toBe(401);
+      });
+
+      it('returns 401 status code when password is wrong', async () => {
+        const response = await request(constants.TEST_PATH)
+          .post('/users/login')
+          .set({
+            Accept: 'application/json',
+            authorization: process.env.TERRA_TOKEN,
+          })
+          .send({
+            username: user.username,
+            password: 'Secure_321',
+          });
+
+        expect(response.status).toBe(401);
+      });
+    });
+
+    describe('requesting with auth', () => {
+      it('returns 201 when data is correct', async () => {
+        const response = await request(constants.TEST_PATH)
+          .post('/users/login')
+          .set({
+            Accept: 'application/json',
+            authorization: process.env.TERRA_TOKEN,
+          })
+          .send({
+            username: user.username,
+            password: userPassword,
+          });
+
+        expect(response.status).toBe(201);
+      });
+
+      it('returns an authentication token', async () => {
+        const response = await request(constants.TEST_PATH)
+          .post('/users/login')
+          .set({
+            Accept: 'application/json',
+            authorization: process.env.TERRA_TOKEN,
+          })
+          .send({
+            username: user.username,
+            password: userPassword,
+          });
+
+        expect(response.body.authenticationToken).toBeTruthy();
+        expect(response.body.authenticationToken).toEqual('dummy_token');
+      });
+    });
+  });
 });
