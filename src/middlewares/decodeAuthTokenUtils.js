@@ -6,7 +6,7 @@ const addUserToRequest = async (req, _res, next) => {
   if (authToken) {
     const tokenParams = jwtDecode(authToken);
 
-    const username = tokenParams['cognito:username'];
+    const username = tokenParams['cognito:username'] || tokenParams.username;
 
     if (username) {
       const user = await users.findByUsername(username);
