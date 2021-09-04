@@ -14,6 +14,7 @@ const rolePermissionsMapping = {
   },
   [`${User.validUserTypes.TERRA}`]: {
     [`${resources.USERS}`]: [actions.LOGIN],
+    [`${resources.MEASURES}`]: [actions.CREATE],
   },
 };
 

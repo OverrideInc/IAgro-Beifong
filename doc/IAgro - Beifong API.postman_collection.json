@@ -117,6 +117,38 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Measures",
+			"item": [
+				{
+					"name": "Register measure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"moisture_1\": \"135\",\n    \"temperature_1\": \"23.8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/dev/measures",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"dev",
+								"measures"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
