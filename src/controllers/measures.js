@@ -13,6 +13,15 @@ const usersController = {
 
     res.status(StatusCodes.CREATED).json(serialized);
   },
+
+  read: async (req, res) => {
+    const measure = await measures.findLast();
+    const serialized = new MeasureSerializer({
+      includeTimestamp: true,
+    }).serialize(measure);
+
+    res.status(StatusCodes.OK).json(serialized);
+  },
 };
 
 module.exports = usersController;

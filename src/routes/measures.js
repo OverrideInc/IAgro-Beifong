@@ -14,4 +14,10 @@ router.post(
   withErrorHandling(measuresController.create)
 );
 
+router.get(
+  '/last',
+  authorizeUser(resources.MEASURES, actions.READ),
+  withErrorHandling(measuresController.read)
+);
+
 module.exports = router;
