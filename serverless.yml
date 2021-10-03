@@ -29,3 +29,8 @@ functions:
           path: /{proxy+}
           method: ANY
           cors: true
+  extract_new_records:
+    handler: src/scripts/extract_new_records.handler
+    events:
+    #  - schedule: cron(0/5 * * * ? *)
+      - schedule: cron(59 23 * * ? *)
