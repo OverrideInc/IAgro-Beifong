@@ -11,6 +11,7 @@ const rolePermissionsMapping = {
     [`${resources.USERS}`]: Object.values(actions).filter(
       (action) => action !== actions.DELETE
     ),
+    [`${resources.MEASURES}`]: [actions.READ],
   },
   [`${User.validUserTypes.TERRA}`]: {
     [`${resources.USERS}`]: [actions.LOGIN],
