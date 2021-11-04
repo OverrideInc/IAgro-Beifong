@@ -9,10 +9,18 @@ const AwsS3Client = require('../lib/awsS3Client.js');
 const TMP_DATA_DIR = '/tmp';
 const { MEASURES_S3_BUCKET } = process.env;
 
+const convertToPercentage = (measure) => 100 - (measure / 1023.0) * 100;
+
 const writeFile = async (columns, data, stringifier, outputStream) => {
   await Promise.all(
     data.map(async (measure) => {
-      const rowToSave = columns.map((column) => measure.payload[column]);
+      const rowToSave = columns.map((column) =>
+        column.includes('moisture')
+          ? convertToPercentage(measure.payload[column])
+          : measure.payload[column]
+      );
+
+      rowToSave[rowToSave.length - 1] = measure.created_at;
 
       stringifier.write(rowToSave);
 
@@ -82,6 +90,7 @@ const generateCSV = async () => {
   console.log(`[LOG] Processing ${newMeasures.length} rows.`);
 
   const columns = Object.keys(newMeasures[0].payload);
+  columns.push('date');
 
   const fileBaseName = `measures-${moment().format('YYYYMMDD')}.csv`;
   const responseFilePath = `${TMP_DATA_DIR}/${fileBaseName}`;
