@@ -3,15 +3,24 @@ const users = require('../repositories/users');
 
 const addUserToRequest = async (req, _res, next) => {
   const authToken = req.headers.authorization;
+  let username;
+  let user;
   if (authToken) {
     const tokenParams = jwtDecode(authToken);
 
-    const username = tokenParams['cognito:username'] || tokenParams.username;
+    username = tokenParams['cognito:username'] || tokenParams.username;
 
     if (username) {
-      const user = await users.findByUsername(username);
+      user = await users.findByUsername(username);
       req.headers.user = user;
     }
+  }
+
+  if (!user && req.body.username && req.originalUrl.includes('login')) {
+    username = req.body.username;
+
+    user = await users.findByUsername(username);
+    req.headers.user = user;
   }
 
   next();
